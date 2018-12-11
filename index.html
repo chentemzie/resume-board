@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Resume Board</title>
+	<link rel="stylesheet" href="css/main.css">
+	<!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+</head>
+<body>
+	<div class="container">
+		<!-- Tab links -->
+		<div class="tabs">
+			<ul class="nav nav-tabs">
+				<li class="tablink active" onclick="openTab(event,'candidate')"><a href="#">Candidate</a></li>
+				<li class="tablink" onclick="openTab(event,'hr')"><a href="#">HR</a></li>
+				<li class="tablink" onclick="openTab(event,'admin')"><a href="#">Admin</a></li>
+			</ul>
+		</div>
+		<!-- Tab content -->
+		<div id="candidateTab" class="tabcontent">
+			<div class="jumbotron">
+				<h3>Add New Resume:</h3>
+				<form id="resumeInputForm">
+					<div class="form-group">
+						<label for="resumeTitleInput">Resume title</label>
+						<input type="text" class="form-control" id="resumeTitleInput"
+						placeholder="Enter title here...">
+					</div>
+					<div class="form-group">
+						<label for="resumePersonNameInput">Name</label>
+						<input type="text" class="form-control" id="resumePersonNameInput"
+						placeholder="Enter your name here...">
+					</div>
+					<div class="form-group">
+						<label for="resumePersonPhoneInput">Phone</label>
+						<input type="text" class="form-control" id="resumePersonPhoneInput"
+						placeholder="Enter your phone here...">
+					</div>
+					<div class="form-group">
+						<label for="resumePersonEmailInput">Email</label>
+						<input type="text" class="form-control" id="resumePersonEmailInput"
+						placeholder="Enter your email here...">
+					</div>
+					<div class="form-group">
+						<label for="resumeCityInput">City</label>
+						<input type="text" class="form-control" id="resumeCityInput"
+						placeholder="Enter city here...">
+					</div>
+					<div class="form-group">
+						<label for="resumeExperienceInput">Experience</label>
+						<select class="form-control" id="resumeExperienceInput">
+							<option value="Less1">Less then 1 year</option>
+							<option value="From1Till2">1-2 years</option>
+							<option value="From2Till5">2-5 years</option>
+							<option value="More5">More then 5 years</option>
+						</select>
+					</div>
+					<div class="form-group">
+						<label for="resumeDescInput">Description</label>
+						<textarea rows="3" type="text" class="form-control" id="resumeDescInput"
+						placeholder="Enter description here..."></textarea>
+					</div>
+
+					<button type="submit" class="btn btn-primary">Add</button>
+				</form>
+			</div>
+		</div>
+		<div id="hrTab" class="tabcontent">
+			<div class="row">
+				<div class="col-lg-12">
+					<div id="resumeList">
+					</div>
+				</div>
+			</div>
+		</div>
+		<div id="adminTab" class="tabcontent">
+			<div class="row">
+				<div class="col-lg-12">
+					<div id="resumeAdminList">
+					</div>
+				</div>
+			</div>
+		</div>	
+	</div>
+
+	<!-- Main logic js -->
+	<script src="js/main.js"></script>
+	<!-- ChanseJS -->
+	<script src="https://chancejs.com/chance.min.js"></script>
+</body>
+</html>

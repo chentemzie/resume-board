@@ -1,0 +1,10 @@
+.tabcontent{
+	display: none;
+	border-top: none;
+	margin-top: 5px;
+}
+
+.show-info{
+	text-decoration: underline;
+	cursor: pointer;
+}
