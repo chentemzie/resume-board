@@ -1,8 +1,10 @@
 const RESUME_STORAGE_ITEM = "resumeData";
 
-document.getElementById("resumeInputForm").addEventListener("submit",
-	 saveResume);
-openTab(null, 'candidate');
+window.onload = () => {
+	document.getElementById("resumeInputForm").addEventListener("submit",
+		saveResume);
+	openTab(null, 'candidate');
+};
 
 function openTab(event, tabName){
 	if(event == null){
@@ -11,27 +13,22 @@ function openTab(event, tabName){
 	}
 
 	var i, tabContents, tabLinks;
-	tabContents = document.getElementsByClassName("tabcontent");
-
-	Array.prototype.forEach.call(tabContents, (item, i, arr) => {
-		item.style.display = "none";
-	});
+	tabContents = [...document.getElementsByClassName("tabcontent")];
+	tabContents.forEach(item => item.style.display = "none");
 	
-	tabLinks = document.getElementsByClassName("tablink");
-	Array.prototype.forEach.call(tabLinks, (item, i, arr) => {
-		item.className = item.className.replace(" active", "");;
-	});
+	tabLinks = [...document.getElementsByClassName("tablink")];
+	tabLinks.forEach(item => item.className = item.className.replace(" active", ""));
 
 	document.getElementById(tabName + "Tab").style.display = "block";
 	event.currentTarget.className += " active";
 
 	switch(tabName){
 		case "hr":
-			fetchResume(false);
-			break;
+		fetchResume(false);
+		break;
 		case "admin":
-			fetchResume(true);
-			break;
+		fetchResume(true);
+		break;
 	}
 }
 
@@ -53,7 +50,7 @@ function saveResume(e){
 
 	var experienceSelect = document.getElementById("resumeExperienceInput");
 	var experience = resumeExperienceInput
-				.options[experienceSelect.selectedIndex].text;
+	.options[experienceSelect.selectedIndex].text;
 
 	var description = document.getElementById("resumeDescInput").value;
 
@@ -100,27 +97,27 @@ function fetchResume(isAdmin){
 		if(isAdmin){
 			resumeList.innerHTML += `<div class="well"> 
 			<h6>Resume ID: ${id}</h6>
-			<h3>Title: ${title}</h3>
+			<h3 class="caption">Title: ${title}</h3>
 			<p>City: ${city}</p>
 			<p>Experience: ${experience}</p>
 			<p>Description: ${description}</p>
 
-			<h4>Person's info: <span class="show-info" 
+			<p>Person's info: <span class="show-info" 
 			onclick="showInfo(event, '${personData.name}', 
-			'${personData.phone}', '${personData.email}' )">Show info</span></h4>
+			'${personData.phone}', '${personData.email}' )">Show info</span></p>
 
 			<a href="#" class="btn btn-danger" onclick="deleteResume('${id}')">
 			Delete</a> 
 			</div>`;
 		}else{
 			resumeList.innerHTML += `<div class="well"> 
-			<h3>Title: ${title}</h3>
+			<h3 class="caption">Title: ${title}</h3>
 			<p>City:  ${city} </p>
 			<p>Experience: ${experience}</p>
 			<p>Description: ${description} </p>
-			<h4>Person's info: <span class="show-info" 
+			<p>Person's info: <span class="show-info" 
 			onclick="showInfo(event, '${personData.name}', 
-			'${personData.phone}', '${personData.email}')">Show info</span></h4>
+			'${personData.phone}', '${personData.email}')">Show info</span></p>
 			</div>`;
 		}
 	}
@@ -129,11 +126,11 @@ function fetchResume(isAdmin){
 function showInfo(event, name, phone, email){
 	event.currentTarget.className = "";
 	event.currentTarget.innerHTML = 
-		`<span>
-		<h6>Name: ${name}</h6> 
-		<h6>Phone: ${phone}</h6>
-		<h6>Email: ${email}</h6>  
-		 </span>`;
+	`<span>
+	<h6>Name: ${name}</h6> 
+	<h6>Phone: ${phone}</h6>
+	<h6>Email: ${email}</h6>  
+	</span>`;
 }
 
 function deleteResume(id){
